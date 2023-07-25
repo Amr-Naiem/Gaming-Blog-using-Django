@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+  {% block title %}
+      create a new category
+  {% endblock %}
+
+
+{% block content %}
+<div id="bg-image">
+{% if user.is_authenticated %}
+    {% if user.is_superuser %}
+        <h1>Add Category...</h1>
+        <br/>
+        <div class = "form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-dark">Add</button>
+            </form>
+        </div>
+    {% else %}
+<h1>you can't do this, and you know it</h1>
+    {% endif %}
+{% else %}
+<h1>need to be logged in to add a post :)</h1>
+{% endif %}
+</div>
+{% endblock %}
+
+
